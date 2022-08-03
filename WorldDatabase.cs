@@ -3,24 +3,29 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Threading;
 using Newtonsoft.Json.Linq;
 
 namespace MinecraftDB
 {
     public class WorldDatabase
     {
-        private readonly string _worldFilePath;
         private const string ConnectionString = "Data Source = DESKTOP-ME8DQVU;Initial Catalog=MinecraftDB;Integrated Security=true";
-        private SqlConnection _con = new SqlConnection(ConnectionString);
-        private string _worldName;
 
-        public WorldDatabase(string worldFilePath)
+        private readonly string _worldFilePath;
+        private readonly SqlConnection _con;
+        private readonly string _worldName;
+        private int _refreshAmount;
+        private int _refreshCooldown;
+
+        public WorldDatabase(string worldFilePath, int refreshAmount, int refreshCooldown, string databaseConnection)
         {
-            if (!Directory.Exists(worldFilePath))
-                return;
-            
             _worldFilePath = worldFilePath;
             _worldName = worldFilePath.Split("\\")[^1];
+            _refreshAmount = refreshAmount;
+            _refreshCooldown = refreshCooldown;
+
+            _con = new SqlConnection(databaseConnection);
             _con.Open();
         }
 
@@ -28,6 +33,7 @@ namespace MinecraftDB
         {
             var creator = new StatsCreator(_worldFilePath);
             var profiles = creator.CreateAll();
+            
             foreach (var profile in profiles)
             {
                 foreach (var categoryProperty in profile.Stats.Properties())
@@ -49,10 +55,13 @@ namespace MinecraftDB
                         var cmd = new SqlCommand(query, _con);
                         cmd.ExecuteNonQuery();
                     }
-                    //Console.WriteLine(jProperty.);
                 }
             }
-            
+        }
+
+        public void Stop()
+        {
+            throw new NotImplementedException();
         }
     }
 }
