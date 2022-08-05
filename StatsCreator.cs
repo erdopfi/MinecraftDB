@@ -7,43 +7,35 @@ using Newtonsoft.Json.Linq;
 
 namespace MinecraftDB
 {
-    public class StatsCreator
+    public static class StatsCreator
     {
-        private string? _worldFilePath;
-        private string StatsFolder => _worldFilePath + "\\stats";
-
-        public StatsCreator(string? worldFilePath)
-        {
-            _worldFilePath = worldFilePath;
-        }
-
-        public List<StatisticProfile> CreateAll()
+        public static List<StatisticProfile> CreateAll(string worldPathDirectory, string worldName)
         {
             var jObject = new List<StatisticProfile>();
 
-            foreach(var file in Directory.GetFiles(StatsFolder))
+            foreach(var file in Directory.GetFiles(worldPathDirectory + "\\Stats"))
             {
                 var uuid = file.Split("\\")[^1].Replace(".json", "");
-                jObject.Add(CreateProfile(uuid,File.ReadAllText(file)));
+                jObject.Add(CreateProfile(uuid,File.ReadAllText(file), worldName));
             }
             return jObject;
         }
         
-        public StatisticProfile? Create(string uuid)
+        public static StatisticProfile? Create(string uuid, string worldPathDirectory, string worldName)
         {
-            string file = StatsFolder + "\\" + uuid + ".json";
+            string file = worldPathDirectory + "\\Stats\\" + uuid + ".json";
             
             if (!File.Exists(file))
                 return null;
 
-            var profile = CreateProfile( uuid,File.ReadAllText(file));
+            var profile = CreateProfile( uuid,File.ReadAllText(file), worldName);
             return profile;
         }
 
-        private StatisticProfile CreateProfile(string uuid, string rawStringData)
+        private static StatisticProfile CreateProfile(string uuid, string rawStringData, string worldName)
         {
             var jObject = JsonConvert.DeserializeObject<JObject>(rawStringData);
-            return new StatisticProfile(uuid, (JObject)jObject!.Property("stats")?.Value!);
+            return new StatisticProfile(uuid, worldName, (JObject)jObject!.Property("stats")?.Value!);
         }
     }
 }

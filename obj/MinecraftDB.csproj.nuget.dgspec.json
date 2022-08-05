@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB\\MinecraftDB.csproj": {}
+    "F:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB.csproj": {}
   },
   "projects": {
-    "E:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB\\MinecraftDB.csproj": {
+    "F:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB\\MinecraftDB.csproj",
+        "projectUniqueName": "F:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB.csproj",
         "projectName": "MinecraftDB",
-        "projectPath": "E:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB\\MinecraftDB.csproj",
+        "projectPath": "F:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB.csproj",
         "packagesPath": "C:\\Users\\kikik\\.nuget\\packages\\",
-        "outputPath": "E:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB\\obj\\",
+        "outputPath": "F:\\Dokumente\\GitHub\\MinecraftDB\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kikik\\AppData\\Roaming\\NuGet\\NuGet.Config"

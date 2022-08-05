@@ -12,18 +12,47 @@ namespace MinecraftDB
     {
         private const string ConnectionString = "Data Source = DESKTOP-ME8DQVU;Initial Catalog=MinecraftDB;Integrated Security=true";
 
-        private readonly string _worldFilePath;
-        private readonly SqlConnection _con;
+        private readonly string _worldPathDirectory;
         private readonly string _worldName;
         private int _refreshAmount;
         private int _refreshCooldown;
+        private int _statisticsVersion;
+        
+        private readonly SqlConnection _con;
 
-        public WorldDatabase(string worldFilePath, int refreshAmount, int refreshCooldown, string databaseConnection)
+        public WorldDatabase(WorldConfiguration configuration)
         {
-            _worldFilePath = worldFilePath;
-            _worldName = worldFilePath.Split("\\")[^1];
+            _worldPathDirectory = configuration.WorldPathDirectory;
+            _worldName = _worldPathDirectory.Split("\\")[^1];
+            _refreshAmount = configuration.RefreshAmount;
+            _refreshCooldown = configuration.RefreshCooldown;
+            _statisticsVersion = configuration.StatisticsVersion;
+            
+            Console.WriteLine(_worldName);
+            Console.WriteLine(_worldPathDirectory);
+
+            string worldIdFile = _worldPathDirectory + "\\world.id";
+            if (File.Exists(worldIdFile))
+                _worldName = File.ReadAllText(worldIdFile);
+            else
+            {
+                _worldName = Guid.NewGuid().ToString();
+                using StreamWriter sw = File.CreateText(worldIdFile);
+                sw.Write(_worldName);
+                Console.WriteLine("World has no id, generating one");
+            }
+
+            _con = new SqlConnection(configuration.SqlConnection);
+            _con.Open();
+        }
+
+        public WorldDatabase(string worldPathDirectory, int refreshAmount, int refreshCooldown, int statisticsVersion, string databaseConnection)
+        {
+            _worldPathDirectory = worldPathDirectory;
+            _worldName = worldPathDirectory.Split("\\")[^1];
             _refreshAmount = refreshAmount;
             _refreshCooldown = refreshCooldown;
+            _statisticsVersion = statisticsVersion;
 
             _con = new SqlConnection(databaseConnection);
             _con.Open();
@@ -31,31 +60,11 @@ namespace MinecraftDB
 
         public void Start()
         {
-            var creator = new StatsCreator(_worldFilePath);
-            var profiles = creator.CreateAll();
+            var profiles = StatsCreator.CreateAll(_worldPathDirectory, _worldName);
             
             foreach (var profile in profiles)
             {
-                foreach (var categoryProperty in profile.Stats.Properties())
-                {
-                    var categoryValue = categoryProperty.Value;
-                    if (categoryValue.Type != JTokenType.Object) continue;
-                    
-                    var categoryObject = (JObject) categoryValue;
-                    var category = categoryProperty.Name;
-                    
-                    foreach (var idProperty in categoryObject.Properties())
-                    {
-                        var id = idProperty.Name;
-                        var value = idProperty.Value.ToObject<int>();
-
-                        Console.WriteLine(profile.Uuid + " - " + category + " - " + id + " - " + value);
-                        
-                        string query = $"insert into Stat values('{category}', '{id}', '{_worldName}', '{profile.Uuid}', {value})";
-                        var cmd = new SqlCommand(query, _con);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
+                profile.WriteDatabase(_con);
             }
         }
 
