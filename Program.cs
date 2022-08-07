@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using JsonSerializer = System.Text.Json.JsonSerializer;
@@ -19,7 +20,6 @@ namespace MinecraftDB
                 Console.WriteLine("Config file not found, generating blank config file, needs a restart");
                 var blankConfigurationString =
                     JsonSerializer.Serialize(new[]{new WorldConfiguration("path", -1, 60, 1, "path")});
-                blankConfigurationString = blankConfigurationString.Replace("\\n", "\n").Replace("\\t", "\t");
 
                 using StreamWriter sw = File.CreateText(ConfigFile);
                 sw.Write(blankConfigurationString);
@@ -39,13 +39,6 @@ namespace MinecraftDB
                 var world = new WorldDatabase(worldConfiguration);
                 world.Start();
             }
-
-
-            //JsonSerializer.Deserialize<WorldConfiguration>(file);
-
-
-            //var world = new WorldDatabase("E:\\Dokumente\\MCWelten\\world");
-            //world.Start();
         }
     }
 }
