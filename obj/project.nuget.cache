@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lUb2vxgI/YR8vIztpyt6HcJpX7JeArbUsTbW6HvsZqPRoc2H9FvoYXb71jr55CtA+PxZUJ3+rQnJb5hlZhpabg==",
+  "dgSpecHash": "e4HBgUGIWRMn2cl3NOPtKDFK2uY7gvhpSRqP5eA/5Dj2tzJdDLPPG5fjs2Gleloh54oWZunP9YEQZUdNWWFp4w==",
   "success": true,
-  "projectFilePath": "F:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB.csproj",
+  "projectFilePath": "E:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB\\MinecraftDB.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kikik\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\kikik\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

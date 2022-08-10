@@ -499,11 +499,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB.csproj",
+      "projectUniqueName": "E:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB\\MinecraftDB.csproj",
       "projectName": "MinecraftDB",
-      "projectPath": "F:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB.csproj",
+      "projectPath": "E:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB\\MinecraftDB.csproj",
       "packagesPath": "C:\\Users\\kikik\\.nuget\\packages\\",
-      "outputPath": "F:\\Dokumente\\GitHub\\MinecraftDB\\obj\\",
+      "outputPath": "E:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\kikik\\AppData\\Roaming\\NuGet\\NuGet.Config"
