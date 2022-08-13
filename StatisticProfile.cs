@@ -26,7 +26,7 @@ namespace MinecraftDB
 
         public void WriteDatabase(SqlConnection sqlConnection)
         {
-            string dateString = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+            string dateString = DateTime.Now.ToString(CultureInfo.CurrentCulture);
             foreach (var categoryProperty in Stats.Properties())
             {
                 var categoryValue = categoryProperty.Value;
