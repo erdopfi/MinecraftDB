@@ -44,3 +44,5 @@ F:\Dokumente\GitHub\MinecraftDB\obj\Debug\net6.0\refint\MinecraftDB.dll
 F:\Dokumente\GitHub\MinecraftDB\obj\Debug\net6.0\MinecraftDB.pdb
 F:\Dokumente\GitHub\MinecraftDB\obj\Debug\net6.0\MinecraftDB.genruntimeconfig.cache
 F:\Dokumente\GitHub\MinecraftDB\obj\Debug\net6.0\ref\MinecraftDB.dll
+E:\Dokumente\GitHub\MinecraftDB\MinecraftDB\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+E:\Dokumente\GitHub\MinecraftDB\MinecraftDB\bin\Debug\net6.0\MySqlConnector.dll

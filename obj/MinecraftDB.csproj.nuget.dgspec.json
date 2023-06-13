@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB.csproj": {}
+    "E:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB\\MinecraftDB.csproj": {}
   },
   "projects": {
-    "F:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB.csproj": {
+    "E:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB\\MinecraftDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB.csproj",
+        "projectUniqueName": "E:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB\\MinecraftDB.csproj",
         "projectName": "MinecraftDB",
-        "projectPath": "F:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB.csproj",
+        "projectPath": "E:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB\\MinecraftDB.csproj",
         "packagesPath": "C:\\Users\\kikik\\.nuget\\packages\\",
-        "outputPath": "F:\\Dokumente\\GitHub\\MinecraftDB\\obj\\",
+        "outputPath": "E:\\Dokumente\\GitHub\\MinecraftDB\\MinecraftDB\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Users\\kikik\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\kikik\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\kikik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\kikik\\AppData\\Roaming\\NuGet\\config\\Godot.Offline.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -38,6 +42,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "MySqlConnector": {
+              "target": "Package",
+              "version": "[2.3.0-beta.2, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.2-beta1, )"

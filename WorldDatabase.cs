@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
+﻿
+using MySqlConnector;
 
 namespace MinecraftDB
 {
@@ -17,7 +11,7 @@ namespace MinecraftDB
         private int _refreshCooldownInSeconds;
         private int _statisticsVersion;
 
-        private readonly SqlConnection _con;
+        private readonly MySqlConnection _con;
 
         public WorldDatabase(WorldConfiguration configuration)
         {
@@ -38,19 +32,7 @@ namespace MinecraftDB
                 Console.WriteLine("World has no id, generating one");
             }
 
-            _con = new SqlConnection(configuration.SqlConnection);
-            _con.Open();
-        }
-
-        public WorldDatabase(string worldPathDirectory, int refreshAmount, int refreshCooldownInSeconds, int statisticsVersion, string databaseConnection)
-        {
-            _worldPathDirectory = worldPathDirectory;
-            _worldName = worldPathDirectory.Split("\\")[^1];
-            _refreshAmount = refreshAmount;
-            _refreshCooldownInSeconds = refreshCooldownInSeconds;
-            _statisticsVersion = statisticsVersion;
-
-            _con = new SqlConnection(databaseConnection);
+            _con = new MySqlConnection(configuration.SqlConnection);
             _con.Open();
         }
 
